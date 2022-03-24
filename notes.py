@@ -3737,3 +3737,52 @@ path_w = Path ()
 zip_c = ZipFile('exercises/zip file/example_2.zip','w')
 for path in path_w. rglob('*.py'):
     zip_c.write(path)
+
+
+# -----------------------------------------------------------------
+# ------------------------- JSON -----------------------------
+# -----------------------------------------------------------------
+# JSON stands for Java Script Object Notation. Is the most common type of data passed between back end and front end.
+
+# To build json objects is required to import the jsom module
+
+import json
+
+# This type of object is created employing a list 
+# In this case such list will contain dictionaries with the same keys
+
+# For the porpuse of the next json file related excercises, there will be created the next files
+# which are contained on the '.../exercises/json' folder
+
+
+json_list_a = [
+    {'character':'Simone Cole','weapon':'AR','power':'Real life hacking'},
+    {'character':'Paul Rawlimgs','weapon':'Faith and destiny','power':'healer'},
+    {'character':'Abigail Black','weapon':'Sniper rifle','power':'Telekinesis'},
+    ]
+
+json_a = json.dumps(json_list_a)
+print('json_a = ',json_a)
+print('json_a = ',type(json_a))
+# This will create a json file and will return the string associated
+
+path_x = Path() / 'exercises/json'
+path_x.write_text(json_a)
+# This instruction will create a json file on the specified directory
+
+path_x.close()
+
+# To read a json file a Path object must be created where a json
+# file is located
+
+path_x.read_text()
+json_b = json.loads(path_x)
+print('json_b =',json_b)
+# This instruction will return the data on the json file
+
+
+# -----------------------------------------------------------------
+# ------------------------- SQL Lite Data Base -----------------------------
+# -----------------------------------------------------------------
+
+# A data base is used to store data of an       
