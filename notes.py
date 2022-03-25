@@ -3955,4 +3955,39 @@ from datetime import datetime
 datetime_a = datetime.now()
 print ('datetime_a = ',datetime_a)
 print ('type(datetime_a) = ',type(datetime_a))
+# The'now()' method will return an object with the exact time at the time of the execution 
+
+import datetime
+
+datetime_b = datetime.date.today()
+print ('datetime_b = ',datetime_b)
+print ('type(datetime_b) = ',type(datetime_b))
+# The'date.today()' method will return an object with the exact date of today
+
+import datetime
+
+datetime_c = datetime.date(2100,12,31) # This is the data passed to the constructor of the 'date' Class
+print ('datetime_c = ',datetime_c)
+print ('type(datetime_c) = ',type(datetime_c))
+# The 'date()' module creates a datetime object from a set of int correspondisng to year, month and day"
+from datetime import date
+
+datetime_d = date(2100,12,31) 
+print ('datetime_d = ',datetime_d)
+print ('type(datetime_d) = ',type(datetime_d))
+# As in the previous example, a datetime object can be created employing the import method that serves better to the programmer
+
+from datetime import date
+
+datetime_e = date.fromtimestamp(446636364) 
+print ('datetime_e = ',datetime_e)
+print ('type(datetime_e) = ',type(datetime_e))
+# The 'fromtimestamp()' method will terum and date time object. This method recieves an integer which represents the number of seconds elapsed since 01-01-1970
+# Its supposed that between the date returned and the 01-01-1970 there has been passed 446636364 seconds
+
+
+datetime_f = datetime.date.today()
+print ('datetime_f.year = ',datetime_f.year)
+print ('datetime_f.month = ',datetime_f.month)
+# This object has several attributes related to the date
 
