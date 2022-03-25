@@ -218,6 +218,7 @@ print (abs(-999))
 # For more complex math operations run 
 import math
 from msilib.schema import Class
+import sqlite3
 
 
 # -----------------------------------------------------------------
@@ -3714,34 +3715,70 @@ zip_a.write (path_u)
 # This returns a'.zip' file with the whole tree of the relative path within CWD it's
 # This is has to be considered
 
-zip_a.close()
+zip_a.close() # CLose satetement to keep the file available for educational porpuses
 # This instruction closes the file, leaving it available to access and modify for any other way
 
-# There is a way to copy a whole branch of a directory tree
+# There is a way to copy every file from whole branch of a directory tree
 
-path_v = Path ()
+path_v = Path ('package1/')
 zip_b = ZipFile('exercises/zip file/example_2.zip','w')
 for path in path_v.rglob('*.*'):
     print (path)
-    # zip_b.write(path)
+    zip_b.write(path)
 
+zip_b.close() # CLose satetement to keep the file available for educational porpuses
 # This 'for loop' will copy every file within a location
 
-path_w = Path ()
-zip_c = ZipFile('exercises/zip file/example_2.zip','w')
+path_w = Path ('package1/')
+zip_c = ZipFile('exercises/zip file/example_3.zip','w')
 for path in path_w. rglob('*.py'):
     zip_c.write(path)
 # This approach brings a way to filter some files and a branch
 
-path_w = Path ()
-zip_c = ZipFile('exercises/zip file/example_2.zip','w')
-for path in path_w. rglob('*.py'):
-    zip_c.write(path)
+zip_c.close() # CLose satetement to keep the file available for educational porpuses
 
+# -----------------------------------------------------------------
+# ------------------------- CSV Files -----------------------------
+# -----------------------------------------------------------------
+
+# CSV files or Comma Separed Values are a type of files that store information in a column like 
+# format
+
+# Python can manage CSV files employing the 'csv' module
+
+# For the porpuse of the next CSV file related excercises, there will be created the next directory
+#  '.../exercises/csv' folder
+
+import csv
+
+with open ('exercises/csv/example1.csv','w', newline = '') as csv_a:
+    CSV_writer_data = csv.writer(csv_a)
+    print ('CSV_writer_data = ',CSV_writer_data)
+    print ('type(CSV_writer_data) = ', type(CSV_writer_data))
+    # This 'CSV_writer_data' is a object class <class '_csv.writer'>
+    CSV_writer_data.writerow(['UserName','UserID','Password'])
+    # The 'writerow()' module allows to write data in a row-type format
+    # This 1st row will work as a header
+    CSV_writer_data.writerow(['A','A1','A11'])
+    CSV_writer_data.writerow(['B','B1','B11'])
+    CSV_writer_data.writerow(['C','C1','C11'])
+    CSV_writer_data.writerow(['D','D1','D11'])
+
+# This last block of instructions creates and writes a csv file with several rows
+
+# To read a csv file there are is a method for an open csv file
+
+with open ('exercises/csv/example1.csv') as csv_b:
+    CSV_reader_data = csv.reader(csv_b)
+    csv_list_a = list(CSV_reader_data)
+    # The CSV_reader_data is an iterator
+
+print ('csv_list_a = ',csv_list_a)
 
 # -----------------------------------------------------------------
 # ------------------------- JSON -----------------------------
 # -----------------------------------------------------------------
+
 # JSON stands for Java Script Object Notation. Is the most common type of data passed between back end and front end.
 
 # To build json objects is required to import the jsom module
@@ -3757,32 +3794,165 @@ import json
 
 json_list_a = [
     {'character':'Simone Cole','weapon':'AR','power':'Real life hacking'},
-    {'character':'Paul Rawlimgs','weapon':'Faith and destiny','power':'healer'},
+    {'character':'Paul Rawlimgs','weapon':'Faith and destiny','power':'Healer'},
     {'character':'Abigail Black','weapon':'Sniper rifle','power':'Telekinesis'},
-    ]
+]
 
 json_a = json.dumps(json_list_a)
 print('json_a = ',json_a)
 print('json_a = ',type(json_a))
 # This will create a json file and will return the string associated
 
-path_x = Path() / 'exercises/json'
+path_x = Path() / 'exercises/json/json_a.json'
 path_x.write_text(json_a)
 # This instruction will create a json file on the specified directory
 
-path_x.close()
+path_x.close() # Close satetement to keep the file available for educational porpuses
 
 # To read a json file a Path object must be created where a json
 # file is located
 
-path_x.read_text()
-json_b = json.loads(path_x)
+json_b = path_x.read_text()
 print('json_b =',json_b)
-# This instruction will return the data on the json file
+print('type(json_b) =',type(json_b))
+# This is the instruction to load a json file. It has a string type
 
+json_c = json.loads(json_b)
+print('json_c =',json_c)
+print('type(json_c) =',type(json_c))
+# This instruction will return the data on the json file in a Python format. Thats why the Class is <class 'list'>
 
 # -----------------------------------------------------------------
 # ------------------------- SQL Lite Data Base -----------------------------
 # -----------------------------------------------------------------
 
-# A data base is used to store data of an       
+# A data base is used to store data to create, access, modify or delete data. This is stored in the format of rows 
+# and columns ('like' a csv file)
+
+# Python can manage SQL Lite Data Bases employing Path objectsn JSON files and the 'sqlite3' module
+
+# For the porpuse of the next file related excercises, there will be created the next files
+# which are contained on the '.../exercises/sqlite' folder
+
+import sqlite3
+
+# To start, there will be created a json file
+
+json_list_b = [
+    {'character':'Trevor Phillips','hability':'Berserker mode'},
+    {'character':'Michael "de Santa" Townley','hability':'Slow motion shooting'},
+    {'character':'Franklin Clinton','hability':'Slow motion driving'},
+]
+
+json_d = json.dumps(json_list_b)
+path_y = Path() / 'exercises/sqlite/json_d.json'
+path_y.write_text(json_d)
+# This instruction creates a json file
+json_e = path_y.read_text()
+json_f = json.loads(json_e)
+# This isntruction reads a json file formated in a Python object
+
+# With the SQLITE BROWSER, that has to be downloaded in this link:
+# https://sqlitebrowser.org/dl/
+
+
+with sqlite3.connect('exercises/sqlite/sqlite3_a-db.sqlite3') as connection:
+    # The 'sqlite3.connect()' will return a <class 'sqlite3.Connection'> object
+    print ('connection = ',connection)
+    print ('type(connection) = ',type(connection))
+    command = "INSERT INTO Character VALUES(?,?)"
+    for row in json_f:
+        connection.execute (command,tuple(row.values()))
+
+# This run will return an error since there's no table created on the data base
+# To create a table within the data base we have to:
+# 1 - Open the 'DB browser for SQLite' 
+# 2 - Click on 'New Database'
+# 3 - Browse to where our '.sqlite3' file was created
+# 4 - Create the Table and add the Fields and its datatype
+# 5 - Click on 'Modify Table'
+# 6 - Click on 'Ok' on the pop up window
+# Once these steps are completed Run the last with block again
+
+# There's a way to read Data from a Data Base
+
+with sqlite3.connect('exercises/sqlite/sqlite3_a-db.sqlite3') as connection:
+    # The 'sqlite3.connect()' will return a <class 'sqlite3.Connection'> object
+    command = "SELECT * FROM Character"
+    cursor = connection.execute (command)
+    print ('cursor = ',cursor)
+    print ('type(cursor) = ',type(cursor))
+    # This will return a <class 'sqlite3.Cursor'> object iterable
+    for row in cursor:
+        print ('row = ',row)
+
+# Every row will be a tuple
+
+# -----------------------------------------------------------------
+# ------------------------ Random value ---------------------------
+# -----------------------------------------------------------------
+
+# Sometimes is required to simulate the random occurence of a random fenomena
+# For this we should be able to generate such values considering thresholds
+# and other factors. There's a built-in module for that too!
+
+# Python can manage Random values with the 'random' module
+
+import random
+
+random_a = random.random()
+print ('random_a = ',random_a)
+# This method 'random()' will return a float value between '0' and '1'
+
+rand_a = 0 # Lower threshold
+rand_b = 100 # Higher threshold
+random_b = random.randint(rand_a,rand_b)
+print ('random_b = ',random_b)
+# This method 'randint()' will return an integer number between two values
+
+rand_list_a = [1,456,223,67683,785,537,7476454,6]
+random_c = random.choice(rand_list_a)
+print ('random_c = ',random_c)
+# This method 'choice()' will select and return an value from a iterable
+
+rand_c = 5
+random_d = random.choices(rand_list_a, k = rand_c)
+print ('random_d = ',random_d)
+# This method 'choices()' will select and return 'n' values from a iterable
+
+random.shuffle(rand_list_a)
+print ('rand_list_a = ',rand_list_a)
+# This method 'shuffle()' will shuffle and modify an iterable
+
+# -----------------------------------------------------------------
+# -------------------------- Browser ------------------------------
+# -----------------------------------------------------------------
+
+# With Python a browser can be accessed opened and managed. Is used to automate tests, activities 
+# and webscrapping. The posibilities are meant to be imaginated
+
+# Python can manage a Browser with the 'webbrowser' module
+
+import webbrowser
+
+url_a = 'https://github.com/WilfredM94code/Python-study'
+webbrowser.open (url_a)
+# This instruction will return a boolean value which will be 'True' if
+# the task has no error
+
+# -----------------------------------------------------------------
+# -------------------------- Date Time ----------------------------
+# -----------------------------------------------------------------
+
+# This module helps to manage time/date data with several formats which make
+# easier to analyze, modify and interpretate
+
+# Python can manage a DateTime data with the 'datetime' module
+# This module has several Classes to work with
+
+from datetime import datetime
+
+datetime_a = datetime.now()
+print ('datetime_a = ',datetime_a)
+print ('type(datetime_a) = ',type(datetime_a))
+
