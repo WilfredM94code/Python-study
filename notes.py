@@ -3955,34 +3955,34 @@ from datetime import datetime
 datetime_a = datetime.now()
 print ('datetime_a = ',datetime_a)
 print ('type(datetime_a) = ',type(datetime_a))
-# The'now()' method will return an object with the exact time at the time of the execution 
+# The'now()' method will return an <class 'datetime.datetime'> object with the exact time at the time of the execution 
 
 import datetime
 
 datetime_b = datetime.date.today()
 print ('datetime_b = ',datetime_b)
 print ('type(datetime_b) = ',type(datetime_b))
-# The'date.today()' method will return an object with the exact date of today
+# The'date.today()' method will return an <class 'datetime.date'> object with the exact date of today
 
 import datetime
 
 datetime_c = datetime.date(2100,12,31) # This is the data passed to the constructor of the 'date' Class
 print ('datetime_c = ',datetime_c)
 print ('type(datetime_c) = ',type(datetime_c))
-# The 'date()' module creates a datetime object from a set of int correspondisng to year, month and day"
+# The 'date()' module creates a <class 'datetime.date'> object from a set of int correspondisng to year, month and day"
 from datetime import date
 
 datetime_d = date(2100,12,31) 
 print ('datetime_d = ',datetime_d)
 print ('type(datetime_d) = ',type(datetime_d))
-# As in the previous example, a datetime object can be created employing the import method that serves better to the programmer
+# As in the previous example, a <class 'datetime.date'> object can be created employing the import method that serves better to the programmer
 
 from datetime import date
 
 datetime_e = date.fromtimestamp(446636364) 
 print ('datetime_e = ',datetime_e)
 print ('type(datetime_e) = ',type(datetime_e))
-# The 'fromtimestamp()' method will terum and date time object. This method recieves an integer which represents the number of seconds elapsed since 01-01-1970
+# The 'fromtimestamp()' method will return and <class 'datetime.date'> object. This method recieves an integer which represents the number of seconds elapsed since 01-01-1970
 # Its supposed that between the date returned and the 01-01-1970 there has been passed 446636364 seconds
 
 
@@ -3991,3 +3991,310 @@ print ('datetime_f.year = ',datetime_f.year)
 print ('datetime_f.month = ',datetime_f.month)
 # This object has several attributes related to the date
 
+from datetime import time
+
+time_a = time()
+print ('time_a = ',time_a)
+print ('type(time_a) = ',type(time_a))
+# The <class 'datetime.time'> is a class to keep track on time, it recieves arguments and returns
+# and object without any time tracked
+
+time_b = time(16,28,11)
+print ('time_b = ',time_b)
+print ('type(time_b) = ',type(time_b))
+# This objects recieves a set of values corresponding in order with 
+# Hours, minutes and seconds
+
+time_c = time(minute = 16, hour = 20, second = 11, microsecond = 32) 
+print ('time_c = ',time_c)
+print ('type(time_c) = ',type(time_c))
+# This object recieves also kwargs meant to be setted up
+
+print ('time_c.hour = ',time_c.hour)
+print ('time_c.minute = ',time_c.minute)
+print ('time_c.second = ',time_c.second)
+# The <class 'datetime.time'> has several attributes related to time
+
+from datetime import datetime
+
+time_d = datetime (1970,1,1)
+print ('time_d = ',time_d)
+print ('type(time_d) = ',type(time_d))
+# This <class 'datetime.datetime'> allows to build a Class that stores date and time
+
+time_f = datetime (1970,1,1,3,2,1)
+print ('time_f = ',time_f)
+print ('type(time_f) = ',type(time_f))
+# This <class 'datetime.datetime'> recieves in it's constructor data as 
+# hours, minutes, seconds
+
+# This Class has several methods related with the time related data 
+print ('time_f.year = ',time_f.year)
+print ('time_f.day = ',time_f.day)
+print ('time_f.month = ',time_f.month)
+print ('time_f.timestamp = ',time_f.timestamp)
+# There can be also taken the timestamp
+
+# There can be also taken the diference of time between two time objects
+
+from datetime import timedelta,date
+
+time_delta_a = date (year = 2020, month = 3, day = 15)
+time_delta_b = date (year = 2022, month = 12, day = 7)
+
+time_delta_c = time_delta_b - time_delta_a
+print ('time_delta_c = ',time_delta_c)
+print ('type(time_delta_c) = ',type(time_delta_c))
+# This operation creates a <class 'datetime.timedelta'> object
+
+time_delta_d = datetime (year = 2020, month = 3, day = 15, hour = 1 , minute = 45, second = 45)
+time_delta_e = datetime (year = 2022, month = 12, day = 7, hour = 22 , minute = 28, second = 33)
+
+time_delta_f = time_delta_e - time_delta_d
+print ('time_delta_f = ',time_delta_f)
+print ('type(time_delta_f) = ',type(time_delta_f))
+# In a case of a operation between datetime objects a time delta works the same
+
+# In case is required to count any amount of time (in several time units) there can be 
+# created a 'timedelta()' object
+
+time_delta_g = timedelta (weeks = 4, days = 555)
+time_delta_h = datetime (year = 2021, month = 2, day = 7, hour = 2 , minute = 5, second = 4)
+
+time_delta_i = time_delta_g + time_delta_h
+print ('time_delta_i = ',time_delta_i)
+print ('type(time_delta_i) = ',type(time_delta_i))
+# The 'timedelta()' object can be used to count time from a milestone
+
+time_delta_j = timedelta (weeks = 400, days = 555)
+time_delta_k = date (year = 2000, month = 6, day = 22)
+
+time_delta_l = time_delta_k - time_delta_j
+print ('time_delta_l = ',time_delta_l)
+print ('type(time_delta_l) = ',type(time_delta_l))
+# The 'timedelta()' object can interact with
+
+time_delta_m = timedelta(seconds = 55656)
+time_delta_n = timedelta(seconds = 1)
+
+time_delta_o = time_delta_n - time_delta_m
+print ('time_delta_o = ',time_delta_o)
+print ('type(time_delta_o) = ',type(time_delta_o))
+# There can be negative time, and it has to be considered the reference taken. 
+# This means that such time is 'Xtimeunits' before a reference
+
+# There can be built tring from a time object with the 'strftime()' method
+
+# In the civilized world there's common to have the dd/mm/yyyy date format
+# Where people count distance with thumbs is common the mm/dd/yyyy date format
+
+# It's possible to get string format data from a 'datetime' object
+
+# Full documentation: https://docs.python.org/3/library/datetime.html
+
+strftime_a = datetime.now()
+strftime_b = strftime_a.strftime('%H:%M:%S')
+print ('strftime_a = ',strftime_a)
+print ('type(strftime_a) = ',type(strftime_a))
+# This is a common 'datetime' object
+
+print ('strftime_b = ',strftime_b)
+print ('type(strftime_b) = ',type(strftime_b))
+# This is a string format fron a 'datetime' object
+
+# Note that there's a nomenclature for every data related to the datetime values
+
+# A resume of the nomenclature employed to get different data from a datetime object
+'''
+%a	Abbreviated weekday name.	Sun, Mon, …
+%A	Full weekday name.	Sunday, Monday, …
+%w	Weekday as a decimal number.	0, 1, …, 6
+%d	Day of the month as a zero added decimal.	01, 02, …, 31
+%-d	Day of the month as a decimal number.	1, 2, …, 30
+%b	Abbreviated month name.	Jan, Feb, …, Dec
+%B	Full month name.	January, February, …
+%m	Month as a zero added decimal number.	01, 02, …, 12
+%-m	Month as a decimal number.	1, 2, …, 12
+%y	Year without century as a zero added decimal number.	00, 01, …, 99
+%-y	Year without century as a decimal number.	0, 1, …, 99
+%Y	Year with century as a decimal number.	2013, 2019 etc.
+%H	Hour (24-hour clock) as a zero added decimal number.	00, 01, …, 23
+%-H	Hour (24-hour clock) as a decimal number.	0, 1, …, 23
+%I	Hour (12-hour clock) as a zero added decimal number.	01, 02, …, 12
+%-I	Hour (12-hour clock) as a decimal number.	1, 2, … 12
+%p	Locale’s AM or PM.	AM, PM
+%M	Minute as a zero added decimal number.	00, 01, …, 59
+%-M	Minute as a decimal number.	0, 1, …, 59
+%S	Second as a zero added decimal number.	00, 01, …, 59
+%-S	Second as a decimal number.	0, 1, …, 59
+%f	Microsecond as a decimal number, zero added on the left.	000000 – 999999
+%z	UTC offset in the form +HHMM or -HHMM.	 
+%Z	Time zone name.	 
+%j	Day of the year as a zero added decimal number.	001, 002, …, 366
+%-j	Day of the year as a decimal number.	1, 2, …, 366
+%U	Week number of the year (Sunday as the first day of the week). All days in a new year preceding the first Sunday are considered to be in week 0.	00, 01, …, 53
+%W	Week number of the year (Monday as the first day of the week). All days in a new year preceding the first Monday are considered to be in week 0.	00, 01, …, 53
+'''
+# This can be used to build more complex strings
+
+strftime_c = strftime_a.strftime('%j')
+strftime_d = strftime_a.strftime('%U')
+strftime_e = strftime_a.strftime('%H')
+strftime_f = strftime_a.strftime('%B')
+strftime_g = strftime_a.strftime('%A')
+
+string_strftime_a = f'The {strftime_c}th day of the year,\non the {strftime_d}th week of the year,\non the {strftime_e}th hour of the day,\non {strftime_f},\non {strftime_g} This string was made'
+
+# Note that the 'string format time' cannot recieve for some reason, strings with '-'
+
+# This method can be used with any 'datetime' object
+strftime_h = datetime.fromtimestamp(991465160)
+print ('strftime_h = ',strftime_h)
+strftime_i = strftime_h.strftime('%A %B %H')
+print ('strftime_i = ',strftime_i)
+# This nomenclature works with every required combination
+
+# A datetime can be converten into a time stamp
+
+strftime_j = datetime.now()
+timestamp_a = datetime.timestamp(strftime_j)
+print ('timestamp_a = ',timestamp_a)
+print ('type(timestamp_a) = ',type(timestamp_a))
+# This floating point considers the fraction of seconds related to the actual time on the time
+# consulted
+
+# To create a 'datetime' object from a string there has to be considered the previous nomenclature
+
+string_strftime_b = '11 Aug, 2010'
+# Given this string we have to provide the identficator of every data from this string
+# In this case:
+# 1 - 11 = %d
+# 2 - Aug = %b
+# 3 - 2010 = %Y
+
+# To build the 'datetime' object there has to be provided, to the 'strptime()' method
+# the nomenclature along with the punctuation symbols
+
+datetime_g = datetime.strptime(string_strftime_b, '%d %b, %Y')
+print ('datetime_g = ',datetime_g)
+print ('type(datetime_g) = ',type(datetime_g))
+# This method will return a 'datetime' object
+
+# Taking a 'thumb distance' approach of time we'll construct a string format of a date
+
+string_strftime_c = 'Mar 28, 1994'
+datetime_h = datetime.strptime(string_strftime_c, '%b %d, %Y')
+print ('datetime_h = ',datetime_h)
+print ('type(datetime_h) = ',type(datetime_h))
+# This method will return a 'datetime' object
+
+string_strftime_d = '28/03/1994 21:00:00'
+datetime_i = datetime.strptime(string_strftime_d, '%d/%m/%Y %H:%M:%S')
+print ('datetime_i = ',datetime_i)
+print ('type(datetime_i) = ',type(datetime_i))
+# This method will return a 'datetime' object
+
+# If we want to demorate the execution of a statement we can use the 'sleep()' method
+
+import time
+count = 0 
+while True:
+    if count <= 3:
+        print('Wait...')
+        time.sleep(5)
+        count += 1
+    else:
+        print('Wow, time elapsed')
+        break
+
+# This block shows how the 'sleep()' method works
+
+# -----------------------------------------------------------------
+# ----------------- Python Package index installer ----------------
+# -----------------------------------------------------------------
+
+# The Python Package index installer is a repository of sofware for the Python programming 
+# languaje. There are published +200.000 packages with +2.000.000 versions available
+# To manipulate this intalling index there are several terminal commands to
+# use:
+
+# 1 - 'pip install xxx' changing the 'xxx' with a python package name we can install any available package with that name
+# 2 - 'pip install xxx==yy.yy.yy' adding a '==' we can specify the version of the package that we want ton install
+# 3 - 'pip list' will return the list of installed packages 
+# 4 - 'pip install --upgrade xxx' will upgrade the package to the newer version available
+# 5 - 'pip install --upgrade pip'will upgrade the pip installer to the newer version available
+# 6 - 'pip uninstall xxx' will uninstall any package
+# 7 - 'pip install xxx==yy.yy.*' will fin the steadier version of the package
+
+# -----------------------------------------------------------------
+# -------------------- Virtual environments ----------------------
+# -----------------------------------------------------------------
+
+# When programming is common to use several 3rd party packages and modules.
+# These packages and modules are meant to work for particular Python versions
+# and with particular 3rd patry packages and modules. 
+
+# To keep several sets of packages and modules compatible with each other 
+# it is a common practice to create virtual environmets
+
+# This will allows us to keep several versions of different packages
+
+# Is a personal preference to use ANACONDA buy Python allows us to build 
+# virtual environments
+
+# The next steps are meant to build a virtual environment for Python
+
+# Note: Python has to be installed on the PC
+
+# 0 - Change the CWD of the terminal to the one containing a project
+# 1 - Type 'pip install pipenv' on the terminal
+# 2 - Type 'pipenv install' on the terminal
+
+# After a virtual environment is created is required to activate it. 
+# For so, we'll have to type on terminal 'pipenv shell'
+
+# After that, our virtual environment will be ready to run any Python script
+
+
+# -----------------------------------------------------------------
+# -------------------------- Yelp API -----------------------------
+# -----------------------------------------------------------------
+
+# An API is an application programming interface which contains a set of objects and methods
+# meant to function along with a programming languaje. An API also allows to different websites
+# to comunicate with eachother to share data. This occurs with an API end port
+
+# To get data from the YELP API it has to be requested on this URL:
+# GET https://api.yelp.com/v3/businesses/search
+
+# Once sent a request to a website, it will return information
+
+# Every request is made with an instruction which will engage different responses from the website
+
+# When working with website comunication the protocol used is the HTTP - Hypertext Transfer Protocol.
+# It has several keywords that can be seen on the next website
+# https://developer.mozilla.org/es/docs/Web/HTTP/Methods
+
+# Every HTTP request will return a response status code. These response codes can be seen on the 
+# next website:
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+# Informational responses (100–199)
+# Successful responses (200–299)
+# Redirection messages (300–399)
+# Client error responses (400–499)
+# Server error responses (500–599)
+
+# YELP is an organization meant to match searchs of bussiness from the food industry. Allows reviews 
+# and basic information from restaurants
+
+# API KEY:
+# TxoFTA46xx1ACThFu_EU90i7doQYv5CBfYevuKb6WFsaDZVFhtV_Nyvr9R14SSutA-hwc75FjC7VXr_JkkQEfqZD7RJifEc6FafkImuubGFsn2F7Eb0MUR7y0TtBYnYx
+
+# Client ID
+# nh_mVVTOPfjLAyqCjmHnnQ
+
+# From now on, for the YELP APP, there will be a new folder 
+# called ../projects/MonchiExpress
+# Every fle related will be stored there.
+# A new file called app.py was created within that folder
