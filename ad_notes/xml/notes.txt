@@ -1,0 +1,218 @@
+There's a languaje related to website development and it's called XML that stands for
+Extensible Markup Lnaguaje. This languaje allows to define elemnts to give format and create a
+personalized languaje
+
+This Markup languaje can be used within HTML tags but it cannot replace HTML itself and
+HTML cannot replace XML
+
+HTML is used within a set of tags while XML can create any personalized tag to decribe any data
+That helps to share and transport data, it simplifies platform changes and data availability 
+using a plain text format. This versatility is often employed in web development and to separated
+data from presentation since it doesnt carry information about how to display it. This same XML
+data can be used in different presentation scenarios. This makes XML compatible and often
+complementary to HTML
+
+With XML, the ehole content of data can be stored in several XML files
+
+An XML example of how describing can be an XML code is next
+
+<?xml version="1.0"?>
+<CAT>
+    <NAME>Izzy</NAME>
+    <BREED>Siamese</BREED>
+    <AGE>6</AGE>
+    <ALTERED>yes</ALTERED>
+    <DECLAWED>no</DECLAWED>
+    <LICENSE>Izz138bod</LICENSE>
+    <OWNER>Colin Wilcox</OWNER>
+</CAT>
+
+Any web browser will ignore any XML tag when running a file
+As with HTML every tag must be oppened and closed correctly
+When working on a XML document adding new tags doesn't break the file if properly added
+
+Here's another example
+
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+
+  <book category="children">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <year>2005</year>
+    <price>29.99</price>
+  </book>
+
+  <book category="web">
+    <title lang="en">XQuery Kick Start</title>
+    <author>James McGovern</author>
+    <author>Per Bothner</author>
+    <author>Kurt Cagle</author>
+    <author>James Linn</author>
+    <author>Vaidyanathan Nagarajan</author>
+    <year>2003</year>
+    <price>49.99</price>
+  </book>
+
+  <book category="web" cover="paperback">
+    <title lang="en">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>39.95</price>
+  </book>
+
+</bookstore>
+
+In the last example it can be seen that there's a main tag where every other 
+tag is nested and from its organization we can see that within out root tag there are several
+evements with different characteristics
+
+Any tag is an XML element and it can contain TEXT, ATTRIBUTES, OTHER ELEMENTS or A MIX OF ALL
+The '<bookstore></bookstore>' is our root tag
+The '<book></book>' is an element of this root and it contains elemnts within
+The '<book></book>' tag has and attribute called 'category' and another called 'cover'
+The <title></title> tag is nested within the '<book></book>' tag
+The <title></title> tag has an attribute called 'lang' and it has a text
+There are several other tags with text such as <author></author>,<year></year> and <price></price>
+These are called Text content
+
+
+Note: Every tag is case sensitive which means that the <title></title> != <Title></Title>
+Note: XML considers the usage of several white spaces
+Note: Every attribute must be contained between '' or ""
+Note: There can be created a empty tag like '<tag></tag>' or '<tag />'
+Note: Every tag mus start with a letter or undersocre
+Note: Any tag cannot start with a 'xml' (or any variation)
+Note: Element names can contain letters, digits, hyphens, underscores, and periods
+Note: Element names cannot contain spaces
+Note: There are not restrictions between using attributes or elements to store data
+Note: Attributes cannot have multiple values, but elements can
+Note: Attributes cannot have tree structures, but elements can
+Note: Attributes are not easily expandable, but elements can
+Note: There must be avoided '.', '-' and ':' to separe composed tags like <first_name></first_name>. Underscore are always better
+Note: There must be used character identities when requiring to use '""' and '''' at the same time
+Note: When naming tags in a XML document there must be consitency
+Note: There are several characters with an special meaning in XML like '<' or '>'
+That's why there are equivalencies to these characters:
+
+&lt;	<	less than
+&gt;	>	greater than
+&amp;	&	ampersand 
+&apos;	'	apostrophe
+&quot;	"	quotation mark
+
+The structure of a XML document has a tree structure
+
+<root>
+    <child>
+        <subchild>.....</subchild>
+    </child>
+</root>
+
+Every additional data inside the 'tag' is called attribute
+
+As seen, there must be a format to store any kind of data, this makes this Markup Languaje so
+versatile for any industry
+
+An XML document is divided between a Prolog and a Body
+
+- Prolog: Contains metadata of the file. It describes XML version and the encoding type 
+along with several other data.
+
+Example:
+<?xml version="1.0" encoding="UTF-8"?>
+
+- Body: Contains the root or roots and the nested elements. Note that to allow several roots
+there must be a aconfiguration, otherwise there must be a root enclosing the whole body of 
+the XML file
+
+There's a way to comment any XML file
+Example: 
+
+<!-- This is a comment -->
+
+Within a comment there cannot be a '--'
+
+A common attribute between HTML and XML which is 'id' and is used to identify an element or a 
+commonly repeated tag
+
+When working with different XML fragments independents one to another there must be a prefix on any tag
+to avoid conflicts between these different fragments
+
+##Segment a
+<a:book></a:book>
+
+##Segment b
+<b:book></b:book>
+
+In this cases, there was introduced a prefix for each segment, an is required consistency in every 
+segment
+
+To create a namespace in XML there must be used the  'xmlns' followed by ':' and the value related
+Example: 
+
+<a:tag xlmns:a='www.com'></a:tag>
+
+Here, 'a' is the namespace declared by the expression 'xlmns:' which stores the 'www.com' value
+Every xmlns of each tag must get the prefix value
+
+An XML stores data which can be accessed though a XML-PATH also called XPath
+
+XPath contains a library of standard functions. It uses path expressions to select nodes or
+nodes-set in a XML document, and these are nearly similar to the expressions ussed in traditional
+compute file systems
+
+For example:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bookstore>
+
+    <book category="cooking">
+        <title lang="en">Everyday Italian</title>
+        <author>Giada De Laurentiis</author>
+        <year>2005</year>
+        <price>30.00</price>
+    </book>
+
+    <book category="children">
+        <title lang="en">Harry Potter</title>
+        <author>J K. Rowling</author>
+        <year>2005</year>
+        <price>29.99</price>
+    </book>
+
+    <book category="web">
+        <title lang="en">XQuery Kick Start</title>
+        <author>James McGovern</author>
+        <author>Per Bothner</author>
+        <author>Kurt Cagle</author>
+        <author>James Linn</author>
+        <author>Vaidyanathan Nagarajan</author>
+        <year>2003</year>
+        <price>49.99</price>
+    </book>
+
+    <book category="web">
+        <title lang="en">Learning XML</title>
+        <author>Erik T. Ray</author>
+        <year>2003</year>
+        <price>39.95</price>
+    </book>
+
+</bookstore>
+
+/bookstore/book[1]                	Selects the first book element that is the child of the bookstore element
+/bookstore/book[last()]	            Selects the last book element that is the child of the bookstore element
+/bookstore/book[last()-1]	            Selects the last but one book element that is the child of the bookstore element
+/bookstore/book[position()<3]	        Selects the first two book elements that are children of the bookstore element
+//title[@lang]	                    Selects all the title elements that have an attribute named lang
+//title[@lang='en']	                Selects all the title elements that have a "lang" attribute with a value of "en"
+/bookstore/book[price>35.00]	        Selects all the book elements of the bookstore element that have a price element with a value greater than 35.00
+/bookstore/book[price>35.00]/title	Selects all the title elements of the book elements of the bookstore element that have a price element with a value greater than 35.00
