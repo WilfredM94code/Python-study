@@ -4575,10 +4575,169 @@ while True:
 
 # This project is stored on the '/projects/AutomateBrowser' folder
 
-
 # This app opens the Chrome Web Browser and log-in in g-Mail
 
 # This app employs Selenium, a web driver library employed to atumate web browsing activities
 
-# As in the web scraping app, this one hoover between several HTML tags to find the useful
+# As in the web scraping app, this one hoover between several HTML and XML tags to find the useful
 # 'where' on the website
+
+# -----------------------------------------------------------------
+# ------------------------- PDF Files -----------------------------
+# -----------------------------------------------------------------
+
+# This project is stored on the '/projects/PDFFiles' folder
+
+# This app allows to read, write and merge PDF files using simple instructions
+# methods and attributes of several objects
+
+# This app employs the 'PyPDF2' package
+
+# -----------------------------------------------------------------
+# --------------------- Excel SpreadSheets ------------------------
+# -----------------------------------------------------------------
+
+# This project is stored on the '/projects/ExelSpreadsheet' folder
+
+# This app modifies an existing 'xlsx' file by adding rows and columns to a spreadsheet
+# deleting them, adding new spreadsheets to the workbook, selecting a range of columns, rows
+# and row x columns. This app also iterates between rows x columns and columns x rows
+
+# This app employs the 'openpyxl' package
+
+# -----------------------------------------------------------------
+# --------------------------- Numpy -------------------------------
+# -----------------------------------------------------------------
+
+# Numpy is a leading package used to dead with numeric data in the form of arrays
+# Is employed to build arrays and matrix and several other number arrangements
+
+# It's main advantage is to manage numberic data with less resources than any other
+# package
+
+# It can also manage nun numerical arrays (string aor boolean arrays)
+
+# Is used as main input fro Deep-learning libraries like Tensorflow
+
+# This app employs the 'numpy' package
+
+# -----------------------------------------------------------------
+# --------------------- Regular Expressions -----------------------
+# -----------------------------------------------------------------
+
+# RegEx or regular expressions is a tool used in Python to gather info for particular string
+# that follows a format
+
+# There's a built-in package called 're'
+
+import re
+
+test_string_a = 'tan'
+# Here we have a simple string
+
+pattern_a = '.a.'
+# Here we have a simple pattern, which contains a metacharacter, in this case 'a' and it is defined
+# by the usage of '..' on each side of the character.
+
+# This means that it doesnt matter what are the characters at the right and at the left of a string, it 
+# te pattern only contemplates the usage of the letter 'a'
+
+# Note that, in case required an interaction to map every character within a string, there can be used the '.' 
+# metacharacter to gather only what is preceeded by another character whatever this is
+# There can be used the '..' to map every character within a string that is preceeded by two characters. This can be
+# to map every character preceeded by any two characters
+
+# METACHARACTERs list:
+# [] A set of characters within a range                                                 "[a-m]"	
+# \	Signals a special sequence (can also be used to escape special characters)	        "\d"	
+# .	Any character (except newline character)	                                        "he..o"	
+# ^	Starts with	                                                                        "^hello"	
+# $	Ends with	                                                                        "planet$"	
+# *	Zero or more occurrences	                                                        "he.*o"	
+# +	One or more occurrences	                                                            "he.+o"	
+# ?	Zero or one occurrences	                                                            "he.?o"	
+# {}	Exactly the specified number of occurrences	                                    "he.{2}o"	
+# |	Either or	                                                                        "falls|stays"	
+# ()	Capture and group	 	 
+
+# Lists from https://www.w3schools.com/python/python_regex.asp
+
+
+# Then to get every match of the pattern on our string we use te 'match()' method of the 're' object
+
+result_a = re.match(pattern_a,test_string_a)
+print ('result_a = ',result_a)
+print ('type(result_a)',type(result_a))
+# This sntruction returns a <class 're.Match'> object
+# It shows the index where the match has been found
+
+result_b = re.finditer('..', 'Selflesness')
+# This method recieves a meta character and a string as an argument
+# Then it creates a <class 're.Match'> object for every time a character of the second string appears in the string between '[]'
+
+# This method recieves two arguments, first it recieves a metacharacter (in this case a set of characters noted by '[]')
+# the it recieves a string to iterate
+for result in result_b:
+    print ('result = ',result)
+
+result_c = re.finditer ('[Haim]','Here comes again, this so called piece of human being')
+for result in result_c:
+    print ('result = ',result)
+
+# SET OF CHARACTERS VARIANTS list:
+# [arn]	Returns a match where one of the specified characters (a, r, or n) are present	
+# [a-n]	Returns a match for any lower case character, alphabetically between a and n	
+# [^arn]	Returns a match for any character EXCEPT a, r, and n	
+# [0123]	Returns a match where any of the specified digits (0, 1, 2, or 3) are present	
+# [0-9]	Returns a match for any digit between 0 and 9	
+# [0-5][0-9]	Returns a match for any two-digit numbers from 00 and 59	
+# [a-zA-Z]	Returns a match for any character alphabetically between a and z, lower case OR upper case	
+# [+]	In sets, +, *, ., |, (), $,{} has no special meaning, so [+] means: return a match for any + character in the string	
+
+# Lists from https://www.w3schools.com/python/python_regex.asp
+
+
+result_d =  re.finditer ('[A-Za-z]','Here comes again, this so called piece of human being')
+for result in result_d:
+    print ('result = ',result)
+
+# [a-zA-Z]	Returns a match for any character alphabetically between a and z, lower case OR upper case	
+
+result_e =  re.finditer ('[0-3][0-2]','03300022002020')
+for result in result_e:
+    print ('result = ',result)
+
+# [0-5][0-9] Returns a match for any two-digit numbers from 00 and 59
+
+result_f =  re.finditer ('^I',"Im amazed by how an astronaut could analize an apple")
+for result in result_f:
+    print ('result = ',result)
+
+result_g =  re.finditer ('^F',"Funny fire fliying furius")
+for result in result_g:
+    print ('result = ',result)
+
+# The '^' matches if a string starts with a letter
+
+result_h =  re.finditer ('s$','Sits')
+for result in result_h:
+    print ('result = ',result)
+
+result_i =  re.finditer ('h$','Cathch and match')
+for result in result_i:
+    print ('result = ',result)
+
+
+# SPECIAL REQUENCES list:
+# \A	Returns a match if the specified characters are at the beginning of the string	                                                                                                                                        "\AThe"	
+# \b	Returns a match where the specified characters are at the beginning or at the end of a word (the "r" in the beginning is making sure that the string is being treated as a "raw string")	                            r"\bain"
+# \B	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word (the "r" in the beginning is making sure that the string is being treated as a "raw string")	            r"\Bain"
+# \d	Returns a match where the string contains digits (numbers from 0-9)	                                                                                                                                                    "\d"	
+# \D	Returns a match where the string DOES NOT contain digits	                                                                                                                                                            "\D"	
+# \s	Returns a match where the string contains a white space character	                                                                                                                                                    "\s"	
+# \S	Returns a match where the string DOES NOT contain a white space character	                                                                                                                                            "\S"	
+# \w	Returns a match where the string contains any word characters (characters from a to Z, digits from 0-9, and the underscore _ character)	                                                                                "\w"	
+# \W	Returns a match where the string DOES NOT contain any word characters	                                                                                                                                                "\W"	
+# \Z	Returns a match if the specified characters are at the end of the string	                                                                                                                                            "Spain\Z"
+
+# Lists from https://www.w3schools.com/python/python_regex.asp
