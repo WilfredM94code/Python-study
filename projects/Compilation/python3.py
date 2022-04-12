@@ -353,9 +353,9 @@ print(excercise_33)
 number_a = inp_covertor_a()
 count = 1
 while count <= number_a:
-    print ('* ' * count)
+    print ('* ' * count + '\n')
     count += 1
 count = number_a
 while count > 0:
-    print ('* ' * count)
+    print ('* ' * count + '\n')
     count -= 1
