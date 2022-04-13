@@ -744,12 +744,10 @@ info = info_process(name='Walter', nick_name='Danger',
 
 name = 'Walter'  # global variable
 
-
 def cool_people(not_a_name):
     number = 44  # Local variable of cool_people
     text = 'Yes'
     thing = '6'
-
     def not_so_cool(number):
         nonlocal text  # Nonlocal variable 'text'
         global name  # A global variable is called on a object
@@ -4727,6 +4725,240 @@ result_i =  re.finditer ('h$','Cathch and match')
 for result in result_i:
     print ('result = ',result)
 
+# The '$' matches if a string ends with a letter
+
+result_j =  re.finditer ('s*s','Assassin')
+for result in result_j:
+    print ('result = ',result)
+
+result_k =  re.finditer ('[Aa]*ss','Assassin')
+for result in result_k:
+    print ('result = ',result)
+
+result_l =  re.finditer ('s*','Assassin')
+for result in result_l:
+    print ('result = ',result)
+
+# The '*' has a left and right side to build a pattern. 
+# The character at the left implies that there will be a match if such character is found zero or more times within a string
+# This characer at the left can be preceeded by another characters that can preceed this repeated (or not) character
+# The right characters consists in the the characters that follows the repeated (or not) character
+
+result_m =  re.finditer ('s+s','Assassin')
+for result in result_m:
+    print ('result = ',result)
+
+result_n =  re.finditer ('[Aa]+ss','Assassin')
+for result in result_n:
+    print ('result = ',result)
+
+result_o =  re.finditer ('s+','Assassin')
+for result in result_o:
+    print ('result = ',result)
+
+# The '+' has a left and right side to build a pattern. 
+# The character at the left implies that there will be a match if such character is found one or more times within a string
+# This characer at the left can be preceeded by another characters that can preceed this single or repeated character
+# The right characters consists in the the characters that follows the single or repeated character
+
+result_p =  re.finditer ('s?s','Assassin')
+for result in result_p:
+    print ('result = ',result)
+
+result_q =  re.finditer ('[Aa]?ss','Assassin')
+for result in result_q:
+    print ('result = ',result)
+
+result_r =  re.finditer ('s?','Assassin')
+for result in result_r:
+    print ('result = ',result)
+
+# The '?' has a left and right side to build a pattern. 
+# The character at the left implies that there will be a match if such character is found zero or one time within a string
+# This characer at the left can be preceeded by another characters that can preceed this single (or not existing) character
+# The right characters consists in the the characters that follows the single (or not existing) character
+
+result_s =  re.finditer ('O{4,10}','MILHOOOOOOOUSE')
+for result in result_s:
+    print ('result = ',result)
+
+result_t =  re.finditer ('[A-Z]{4,10}','WHAAAAAAAAT')
+for result in result_t:
+    print ('result = ',result)
+
+result_u =  re.finditer ('[A-Z]{4,10}RT','TEEEEELL BAAAAAART TO COOOOOME HOOOOOOME')
+for result in result_u:
+    print ('result = ',result)
+
+# The '{}' has a left and right side to build a pattern. It recieves a range of times a character is repeated
+# The character at the left implies that there will be a match if such character is found as many times within the range between '{}'
+# This characer at the left can be preceeded by another characters that can preceed this repeated within a range character
+# The right characters consists in the the characters that follows this repeated within a range character
+
+result_s =  re.finditer ('y|o','why and who')
+for result in result_s:
+    print ('result = ',result)
+
+result_t =  re.finditer ('he|ho|hy','when, who, why')
+for result in result_t:
+    print ('result = ',result)
+
+# The '|' matches if either characters at both sides are present within the string
+# Several '|' can be stacked
+
+result_u =  re.finditer ('(he|ho|hy)[a-z]','when, who, why')
+for result in result_u:
+    print ('result = ',result)
+
+# The '()' is used to group several patterns that can be found within a string
+# Note that the () separates the '|' stacked metacharacters from the '[]' metacharacters
+# Theres only one match considering the fact that only one of the conditions is preceeded by another letter
+
+result_v = re.finditer ('\[s]','A[s][s]a[s][s]in')
+for result in result_v:
+    print ('result = ',result)
+
+# The '\' is used to take literally a metacharacter indicator to use it as a sample to match it within a string
+
+# There are several methods used within the RegEx
+
+test_string_b = 'Some times, which are actually 23423 times, or 77, and cant recall. No it was 55656 and 886 another times and it has sense'
+pattern_b = '\d+' # Every other Special sequence can be found at the end of this chapter
+
+result_w = re.findall (pattern_b,test_string_b)
+print ('result_w = ',result_w)
+print ('type(result_w) = ',type(result_w))
+# The 'findall ()' method recieves a pattern and a string to return a list with every sub-string matching
+
+result_x = re.split (pattern_b,test_string_b)
+print ('result_x = ',result_x)
+print ('type(result_x) = ',type(result_x))
+# The 'split ()' segments the string every time a match occurs and returns a list with every splitted part
+
+test_string_c = 'Some times, which are actually 23423 times, or 77, and cant recall. No it was 55656 and 886 another times and it has sense'
+pattern_c = '\s'
+replace_a = ''
+
+result_y = re.sub (pattern_c,replace_a,test_string_c)
+print ('result_y = ',result_y)
+print ('type(result_y) = ',type(result_y))
+# The 'sub ()' substitutes a pattern with from a string with another string
+# This method actually recieves an aditional argument called count that applies the substitution just to a particular number of 
+# occurences
+
+result_z = re.sub (pattern_c,replace_a,test_string_c, count = 3)
+print ('result_z = ',result_z)
+print ('type(result_z) = ',type(result_z))
+# As seen this argument applies the substitution only a particular number of times
+
+result_aa = re.subn (pattern_c,replace_a,test_string_c) # We made it to a doubble letter example index OMG
+print ('result_aa = ',result_aa)
+print ('type(result_aa) = ',type(result_aa))
+# The 'sbun()' method returns a tuple with the modified string and with the number of times it was applied over the original string
+
+
+result_ab = re.search (pattern_c,test_string_c)
+print ('result_ab = ',result_ab)
+print ('type(result_ab) = ',type(result_ab))
+# The 'search ()' method recieves either a pathern or a string and a string and it returns a match only for the first occurance
+
+test_string_d = '123123 544 34345 323 34'
+pattern_d = '\d{3} \d{2}'
+
+result_ac = re.search (pattern_d,test_string_d)
+result_ad = result_ac.group()
+print ('result_ad = ',result_ad)
+print ('type(result_ad) = ',type(result_ad))
+# The 'group()' method returns the string that triggered the match
+
+result_af = result_ac.start()
+print ('result_af = ',result_af)
+print ('type(result_af) = ',type(result_af))
+# The 'start()' method returns the index where the match was triggered
+
+result_ag = result_ac.end()
+print ('result_ag = ',result_ag)
+print ('type(result_ag) = ',type(result_ag))
+# The 'end()' method returns the index where the match ends
+
+result_ah = result_ac.span()
+print ('result_ah = ',result_ah)
+print ('type(result_ah) = ',type(result_ah))
+# The 'span()' method returns a tuple with the starting and ending index of the pattern that triggered the match
+
+# There are several ways to define a string
+
+# Raw Strings: Are string that actually ignores any special character used by python taking the value of every special character as a simple character
+test_string_e = '\n\\Simple but weird looking pattern'
+print ('Control string = ',test_string_e)
+test_string_f = r'\n\\Simple but weird looking pattern'
+print ('Raw string = ',test_string_f)
+# Formatted string: Recieves the variable under '{}'
+test_string_g = 'Medina'
+test_string_h = 'Hello Mr'
+print ('Control string = ',test_string_h,test_string_g)
+test_string_i = f'Hello Mr {test_string_g}'
+print ('Formatted string = ',test_string_i )
+
+# The special sequences are used to build patterns 
+
+result_ai = re.finditer (r'\d','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_ai:
+    print ('result = ',result)
+
+# The '\d' Returns a match where the string contains digits
+
+result_aj = re.finditer (r'\D','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_aj:
+    print ('result = ',result)
+
+# The '\D' Returns a match where the string DOES NOT contain digits
+
+result_ak = re.finditer (r'\s','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_ak:
+    print ('result = ',result)
+
+# The '\s' Returns a match where the string contains a white space character
+
+result_al = re.finditer (r'\S','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_al:
+    print ('result = ',result)
+
+# The '\S' Returns a match where the string DOES NOT contain a white space character
+
+result_am = re.finditer (r'\w','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_am:
+    print ('result = ',result)
+
+# The '\w' Returns a match where the string contains any word characters (characters from a to Z, digits from 0-9, and the underscore _ character)
+
+result_an = re.finditer (r'\W','12 35 As Bm PQ.. House Love \n \t      ')
+for result in result_an:
+    print ('result = ',result)
+
+# The '\W' Returns a match where the string DOES NOT contain any word characters
+
+result_ao = re.finditer (r'tea\b','Pretea blah blah cats \n \t      teaPost') # Matches at the end
+for result in result_ao:
+    print ('result = ',result)
+
+result_ap = re.finditer (r'\btea','Pretea blah blah cats \n \t      teaPost') # Matches at the beginnig
+for result in result_ap:
+    print ('result = ',result)
+
+# The '\b' Returns a match where the specified characters are at the beginning or at the end of a word 
+# (the "r" in the beginning is making sure that the string is being treated as a "raw string")
+
+result_aq = re.finditer (r'tea\B','Pretea blah blah cats \n \t      teaPost') # Matches NOT at the end
+for result in result_aq:
+    print ('result = ',result)
+
+result_ar = re.finditer (r'\Btea','Pretea blah blah cats \n \t      teaPost') # Matches NOT at the beginnig
+for result in result_ar:
+    print ('result = ',result)
+
+# The '\B' Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word 
+# (the "r" in the beginning is making sure that the string is being treated as a "raw string")
 
 # SPECIAL REQUENCES list:
 # \A	Returns a match if the specified characters are at the beginning of the string	                                                                                                                                        "\AThe"	
@@ -4741,3 +4973,47 @@ for result in result_i:
 # \Z	Returns a match if the specified characters are at the end of the string	                                                                                                                                            "Spain\Z"
 
 # Lists from https://www.w3schools.com/python/python_regex.asp
+
+# There's a way to work with dates using RegEx from strings
+# Several files provided on the '\resources' directory for the next RegEx exercises
+
+with open (r'resources\dates.txt') as text_file_a:
+    test_string_k = text_file_a.read()
+    print ('test_string_k = ',test_string_k)
+    print ('type(test_string_k) = ',type(test_string_k))
+    # This way the content of a txt file is copied in a variable
+
+result_as = re.finditer(r'\d{2}.\d{2}.\d{4}',test_string_k)
+for result in result_as:
+    print ('result = ',result)
+# This is a way we can get the dates from string with several date formats
+
+with open (r'resources\emails.txt') as text_file_b:
+    test_string_l = text_file_b.read()
+    print ('test_string_l = ',test_string_l)
+    print ('type(test_string_l) = ',type(test_string_l))
+
+result_at = re.finditer(r'([A-Za-z0-9-_\.]+)@([A-Za-z0-9-]+)\.([A-Za-z0-9]+)',test_string_l)
+for result in result_at:
+    print ('result = ',result)
+# This way we can get every email addres from a string 
+
+with open (r'resources\urls.txt') as text_file_c:
+    test_string_m = text_file_c.read()
+    print ('test_string_m = ',test_string_m)
+    print ('type(test_string_m) = ',type(test_string_m))
+
+result_au = re.finditer(r'https?://(www\.)?([A-Za-z0-9]+)\.([A-Za-z0-9]+)',test_string_m)
+for result in result_au:
+    print ('result = ',result)
+
+# -----------------------------------------------------------------
+# ------------------- Python's 163 miniprograms -------------------
+# -----------------------------------------------------------------
+
+# This project is stored on the '/projects/Compilation' folder
+
+# This app allows to read, write and merge PDF files using simple instructions
+# methods and attributes of several objects
+
+# This app employs the 'PyPDF2' package

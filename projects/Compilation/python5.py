@@ -160,12 +160,70 @@ last_occur = string.rfind('Kelly')
 
 title_49 = '''-----------------------------------------------------------------
 ------------------------ 49 th Excercise ------------------------
-------------------- Repla -------------------
------------------ substring 'Kelly' in a given ------------------
------------------------------ string ----------------------------
+---------------------- Separe in substrings ---------------------
+----------------- a string sparated by hyphens ------------------
 ------------------------------------------------------------------'''
 
-excercise_49 = '''Find the last position of substring 'Kelly' in a given string'''
+excercise_49 = '''Split a givenc string on hyphens into several substrings and display each substring'''
 
 print(title_49)
 print(excercise_49)
+
+string = '''Life-is-a-wonderful-adventure'''
+string = string.replace('-',' ')
+for substring in string.split():
+    print (f'Substring: ',substring)
+
+title_50 = '''-----------------------------------------------------------------
+------------------------ 50 th Excercise ------------------------
+------------------- Delete a empty string from ------------------
+----------------------- a list of strings -----------------------
+------------------------------------------------------------------'''
+
+excercise_50 = '''Remove empty string from a list of strings'''
+
+print(title_50)
+print(excercise_50)
+
+list_a = ['','Here','are','','several','empty','','string','','','another one hehe','']
+for item in range(0,list_a.count('')):
+    list_a.remove('')
+
+print (list_a)
+print (f"'' in list_a {'' in list_a}")
+
+# A more practical approach
+
+list_a = ['','Here','are','','several','empty','','string','','','another one hehe','']
+list_a = [item for item in list_a if item != '']
+print (list_a)
+
+title_51 = '''-----------------------------------------------------------------
+------------------------ 51 th Excercise ------------------------
+-------------------- Remove all the characters ------------------
+---------------------- other from integers ----------------------
+------------------------------------------------------------------'''
+
+excercise_51 = '''Remove all the characters other from integers'''
+
+print(title_51)
+print(excercise_51)
+
+string = input('Introduce a string\n')
+copy_string = string [:]
+counter = 0
+while True:
+    try:
+        int(string[counter])
+        counter += 1
+    except ValueError:
+        string = string.replace(string[counter],'')
+    except IndexError:
+        break
+
+print (f'Original string {copy_string}')
+print (f'Modified string {string}')
+
+# A more optimal approach
+
+result = ''.join([item for item in string if item.isdigit()])
