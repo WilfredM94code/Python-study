@@ -315,7 +315,6 @@ print('gb declared globally')
 def fun():
     loc = 1
     print('loc declared locally')
-
     def nes_fun():
         nes_loc = 2
         print('nes_loc nested declared locally')
@@ -385,7 +384,6 @@ a_new_fun('x')
 def fun():
     x = 'outer x'
     print('x = ', x, ' ', id(x))
-
     def nes_fun():
         nonlocal x
         print('x = ', x, ' ', id(x))
@@ -750,11 +748,11 @@ def cool_people(not_a_name):
     number = 44  # Local variable of cool_people
     text = 'Yes'
     thing = '6'
-
     def not_so_cool(number):
         nonlocal text  # Nonlocal variable 'text'
         global name  # A global variable is called on a object
         print('name = ', name)
+        print('text = ', text)
         name = 'White'  # The global variable has been changed
         another_number = 4  # Local variable of not_so_cool
         data = text  # A local variable copies the value the nonlocal variable
@@ -1967,9 +1965,10 @@ finally:
 
 # The 'with' statement calls several methods embeded on the object. In this case, the 'open()' object
 # recieves a file address and creates a <class '_io.TextIOWrapper'> object which has methods such as:
-# __init__()
-# __enter__()
-# __exit__()
+# __init__() This method is the constructor and is the beginning of the object, first executed 
+# whevever an object of it's class is instatiated
+# __enter__() Provides the algorithm that is meant to be executed everytime an object is opened
+# __exit__() Provides the algorithm that is meant to be executed everytime an object is closed
 # These methods are executed along with the 'with' statement
 
 # -----------------------------------------------------------------
@@ -1999,6 +1998,7 @@ try:
     print('exception_a (-1) = ', exception_a(-1))
 except ValueError as error:
     print('Error =\n', error)
+    print('type(Error) =\n', type(error))
 
 # In this case there are several paths to sort the rised exceptions
 
@@ -2195,15 +2195,12 @@ print('obj_f2.z = ', obj_f2.z)
 
 class Class_g:
     z = 'Class attribute z'
-
     def __init__(self, x, y):  # This is an instance method
         self.x = x
         self.y = y
-
     @classmethod
     def class_method_g(cls):  # This is a Class method
         return 'class_method_g'
-
     def method_g(self):  # This is an instance method
         return 'self.x = {self.x} \nself.y = {self.y}'
 
@@ -2216,7 +2213,7 @@ obj_g2 = Class_g(11, 99).method_g
 print('type(obj_g2) = ', type(obj_g2))
 # Instance method
 
-obj_g3 = Class_g(44, 88).class_method_g
+obj_g3 = Class_g.class_method_g
 print('type(obj_g3) = ', obj_g3)
 # Class method
 
@@ -2224,15 +2221,15 @@ print('type(obj_g3) = ', obj_g3)
 # end of the declaration
 
 obj_g4 = Class_g(44, 88)
-print('type(obj_g4) = ', type(obj_g4))
+print('obj_g4 = ', type(obj_g4))
 # Instance
 
 obj_g5 = Class_g(66, 22).method_g()
-print('type(obj_g5) = ', type(obj_g5))
+print('obj_g5 = ', type(obj_g5))
 # Instance method
 
-obj_g6 = Class_g(55, 55).class_method_g()
-print('type(obj_g6) = ', obj_g6)
+obj_g6 = Class_g.class_method_g()
+print('obj_g6 = ', obj_g6)
 # Class method's return
 
 # -----------------------------------------------------------------
@@ -2445,21 +2442,15 @@ print('arith_inst_a // arith_inst_b = ', arith_inst_a // arith_inst_b)
 class Container:
     def __init__(self):  # This magic method initializes a dictionary
         self.bookmarks = {}
-
     def add(self, bookmark):  # This method counts 1 to a key
         self.bookmarks[bookmark.lower()] = self.bookmarks.get(
             bookmark.lower(), 0) + 1
-
     def __getitem__(self, bookmark):  # This magic method sets a value for a non existing key
         return self.bookmarks.get(bookmark.lower(), 0)
-
-    # This magic method sets a particular value for a key
-    def __setitem__(self, bookmark, count):
+    def __setitem__(self, bookmark, count): # This magic method sets a particular value for a key
         self.bookmarks[bookmark.lower()] = count
-
     def __len__(self):  # This magic method returns the overall len of the object
         return len(self.bookmarks)
-
     def __iter__(self):  # This magic method for containers makes iterable object
         return iter(self.bookmarks)
 
@@ -2636,7 +2627,7 @@ container_a.add()
 # --------------------------- Property ----------------------------
 # -----------------------------------------------------------------
 
-# Property is a function used while defining a Class used to get and set values/ attributez in a formal way.
+# Property is a function used while defining a Class used to get and set values/attributes in a formal way.
 # The 'property()' function returns the managed attribute
 # It recieves 4 functions:
 # fget: Function that returns the value of the managed attribute
@@ -2644,15 +2635,15 @@ container_a.add()
 # fdel: Function to define how the managed attribute handles deletion
 # doc: String representing the property’s docstring
 
+# The use of the property function is considered a better practice than using the __get__, __set__ and __del__
+# magic methods. It also allows to create a doc atribute
 
 class PropertyA:
     def __init__(self):
         self.__name = ''  # The name variable is a empty string as default
-
     def setname(self, name):  # The 'setname(self, name)' method is used to set up a value, which is passed, to the 'self.__name' variable
         print('setname() called')
         self.__name = name
-
     def getname(self):  # The 'getname(self)' method returns the 'self.__name'
         print('getname() called')
         return self.__name
@@ -2690,7 +2681,7 @@ try:
 except ValueError:
     print('Negative value')
 
-# To make these methods private for intern use of the Class the '@property'
+# To make these methods private for intern use of the Class there's ised the '@property' decorator
 # This syntax requires to declare the '@property' declarator at the 'getter' method and make a sub decorator with the
 # name of the 'setter' method
 
@@ -2935,7 +2926,7 @@ data_class_d = DataClassB(2, 3)
 print('data_class_c == data_class_d :', data_class_c == data_class_d)
 print('id(data_class_c) :', id(data_class_c))
 print('id(data_class_d) :', id(data_class_d))
-# As seen before, this arrange of the '__eq__()' method allows us to create pbjects with different ID
+# As seen before, this arrange of the '__eq__()' method allows us to create objects with different ID
 # that can be considered equals
 
 # To create objects that stores a simple amount of fields such as the previous example
@@ -3123,7 +3114,7 @@ print('next(iterable_c) = ', next(iterable_c))
 # -----------------------------------------------------------------
 
 # There's a way to create a simple iterator without having to build a Class
-# The generators are functions are functions that helps to build iterators
+# The generators are functions that helps to build iterators
 
 # This functions allows us to get any variable value after its exectution and it returns an iterator object
 # Every value meant to be returned is served using the 'yield' expression
@@ -3551,15 +3542,17 @@ decorator_v(a=2, b=5, c=8, d=12)
 
 def decorator_w(func):
     def decorator_x(*args):
-        print('1st decorator')
+        print('1st decorator 1st stage')
         func(*args)
+        print('1st decorator 2nd stage')
     return decorator_x
 
 
 def decorator_y(func):
     def decorator_z(*args):
-        print('2nd decorator')
+        print('2nd decorator 1st stage')
         func(*args)
+        print('2nd decorator 2nd stage')
     return decorator_z
 
 
@@ -3572,6 +3565,8 @@ def decorator_aa(name, lastname):
 decorator_aa('Bearer', 'of the curse')
 # This example shows how several decorator can be chained and are executed in the order
 # that has ben passed
+
+# This example exposes the closure of several chained decorators
 
 # -----------------------------------------------------------------
 # --------------------------- Modules -----------------------------
@@ -4041,7 +4036,7 @@ json_list_a = [
 
 json_a = json.dumps(json_list_a)
 print('json_a = ', json_a)
-print('json_a = ', type(json_a))
+print('type(json_a) = ', type(json_a))
 # This will create a json file and will return the string associated
 
 path_x = Path() / 'exercises/json/json_a.json'
